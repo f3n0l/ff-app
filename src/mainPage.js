@@ -1,4 +1,3 @@
-// MainPage.js
 import React, { useState, useEffect } from 'react';
 import StylingComponent from './boxStyling';
 import CharacterBox from './characterBox';
@@ -8,6 +7,8 @@ const MainPage = () => {
     const [selectedType, setSelectedType] = useState('characters');
     const [selectedOrigin, setSelectedOrigin] = useState('');
     const [characters, setCharacters] = useState([]);
+    const [monsters, setMonsters] = useState([]);
+    const [selectedCharacter, setSelectedCharacter] = useState(null);
     const [currentCharacterIndex, setCurrentCharacterIndex] = useState(0);
 
     useEffect(() => {
@@ -23,7 +24,16 @@ const MainPage = () => {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                setCharacters(data);
+
+                if (selectedType === 'characters') {
+                    setCharacters(data);
+                } else if (selectedType === 'monsters') {
+                    setMonsters(data);
+                }
+
+                if (data.length > 0) {
+                    setSelectedCharacter(data[0]);
+                }
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -34,31 +44,37 @@ const MainPage = () => {
 
     const uniqueOrigins = [...new Set(characters.map((character) => character.origin))];
 
-    const filteredCharacters = characters.filter((character) => {
-        if (!selectedOrigin) {
-            return true; // No filter selected, show all characters
+    const selectRandomCharacter = () => {
+        const data = selectedType === 'characters' ? characters : monsters;
+        if (data.length === 0) {
+            return;
         }
-        return character.origin === selectedOrigin;
-    });
-
-    // Function to handle navigating to the next character
-    const nextCharacter = () => {
-        setCurrentCharacterIndex((prevIndex) =>
-            prevIndex < filteredCharacters.length - 1 ? prevIndex + 1 : 0
-        );
-    };
-
-    // Function to handle navigating to the previous character
-    const prevCharacter = () => {
-        setCurrentCharacterIndex((prevIndex) =>
-            prevIndex > 0 ? prevIndex - 1 : filteredCharacters.length - 1
-        );
-    };
-
-    // Function to select a random character
-    const randomCharacter = () => {
-        const randomIndex = Math.floor(Math.random() * filteredCharacters.length);
+        const randomIndex = Math.floor(Math.random() * data.length);
+        setSelectedCharacter(data[randomIndex]);
         setCurrentCharacterIndex(randomIndex);
+    };
+
+    const selectNextCharacter = () => {
+        const data = selectedType === 'characters' ? characters : monsters;
+        if (data.length === 0) {
+            return;
+        }
+        const newIndex = (currentCharacterIndex + 1) % data.length;
+        setSelectedCharacter(data[newIndex]);
+        setCurrentCharacterIndex(newIndex);
+    };
+
+    const selectPreviousCharacter = () => {
+        const data = selectedType === 'characters' ? characters : monsters;
+        if (data.length === 0) {
+            return;
+        }
+        const newIndex =
+            currentCharacterIndex === 0
+                ? data.length - 1
+                : currentCharacterIndex - 1;
+        setSelectedCharacter(data[newIndex]);
+        setCurrentCharacterIndex(newIndex);
     };
 
     return (
@@ -85,20 +101,22 @@ const MainPage = () => {
                     </label>
                 </div>
                 <OriginFetch
-                    origins={uniqueOrigins} // Pass the unique origins as a prop
+                    origins={uniqueOrigins}
                     selectedOrigin={selectedOrigin}
                     onSelectOrigin={(value) => setSelectedOrigin(value)}
+                    characters={selectedType === 'characters' ? characters : monsters}
+                    onSelectCharacter={(character) => setSelectedCharacter(character)}
                 />
                 <div>
-                    <button onClick={prevCharacter}>Previous</button>
-                    <button onClick={nextCharacter}>Next</button>
-                    <button onClick={randomCharacter}>Random</button>
+                    <button onClick={selectPreviousCharacter}>Previous</button>
+                    <button onClick={selectNextCharacter}>Next</button>
+                    <button onClick={selectRandomCharacter}>Random</button>
                 </div>
             </StylingComponent>
-            {filteredCharacters.length > 0 ? (
-                <CharacterBox character={filteredCharacters[currentCharacterIndex]} />
+            {selectedCharacter ? (
+                <CharacterBox character={selectedCharacter} />
             ) : (
-                <p>No characters match the selected criteria.</p>
+                <p>Loading...</p>
             )}
         </div>
     );
