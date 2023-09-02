@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StylingComponent from './boxStyling';
 import CharacterBox from './characterBox';
 import OriginFetch from './originFetch';
+import MonsterBox from './monsterBox'; // Import the MonsterBox component
 
 const MainPage = () => {
     const [selectedType, setSelectedType] = useState('characters');
@@ -113,10 +114,19 @@ const MainPage = () => {
                     <button onClick={selectRandomCharacter}>Random</button>
                 </div>
             </StylingComponent>
-            {selectedCharacter ? (
-                <CharacterBox character={selectedCharacter} />
+            {/* Render CharacterBox or MonsterBox based on selectedType */}
+            {selectedType === 'characters' ? (
+                selectedCharacter ? (
+                    <CharacterBox character={selectedCharacter} />
+                ) : (
+                    <p>Loading...</p>
+                )
             ) : (
-                <p>Loading...</p>
+                selectedCharacter ? (
+                    <MonsterBox monster={selectedCharacter} />
+                ) : (
+                    <p>Loading...</p>
+                )
             )}
         </div>
     );
