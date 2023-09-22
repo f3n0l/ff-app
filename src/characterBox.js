@@ -45,3 +45,5 @@ const CharacterBox = ({ character }) => {
 };
 
 export default CharacterBox;
+
+//map??
