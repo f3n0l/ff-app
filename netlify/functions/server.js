@@ -1,13 +1,15 @@
 // server.js
-const express = require('express');
-const axios = require('axios');
-const serverless = require("serverless-http");
+import express, { Router } from 'express'
+import serverless from "serverless-http"
+
 const app = express();
-const port = process.env.PORT || 3001;
+const router = Router()
+const axios = require('axios');
+// const port = process.env.PORT || 3001;
 
 app.use(express.json());
 
-app.get('/api/characters', async (req, res) => {
+router.get('/api/characters', async (req, res) => {
     try {
         const response = await axios.get('https://www.moogleapi.com/api/v1/characters');
         const data = response.data;
@@ -18,7 +20,7 @@ app.get('/api/characters', async (req, res) => {
     }
 });
 
-app.get('/api/monsters', async (req, res) => {
+router.get('/api/monsters', async (req, res) => {
     try {
         const response = await axios.get('https://www.moogleapi.com/api/v1/monsters');
         const data = response.data;
