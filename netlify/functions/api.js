@@ -10,7 +10,7 @@ api.use(cors());
 api.use(express.json());
 api.use(express.urlencoded({ extended: false }));
 
-router.get('/api/characters', async (req, res) => {
+router.get('/characters', async (req, res) => {
     try {
         const response = await axios.get('https://www.moogleapi.com/api/v1/characters');
         const data = response.data;
@@ -21,7 +21,7 @@ router.get('/api/characters', async (req, res) => {
     }
 });
 
-router.get('/api/monsters', async (req, res) => {
+router.get('/monsters', async (req, res) => {
     try {
         const response = await axios.get('https://www.moogleapi.com/api/v1/monsters');
         const data = response.data;
