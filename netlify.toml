@@ -1,5 +1,5 @@
 [functions]
-  external_node_modules = ["express","https", "serverless-http"]
+  external_node_modules = ["express","https", "serverless-http", "axios"]
   node_bundler = "esbuild"
 
 
