@@ -15,7 +15,7 @@ add typical ff7 layout
         -2px 0 #7b757b,
         0 2px #424542;
     width: 500px;
-    padding: 5px 10px;
+    padding: 20px;
     margin: 50px 50px;
 
     background: #04009d;
@@ -36,7 +36,39 @@ add typical ff7 layout
     text-shadow: 2px 2px #212421,
         1px 1px #212021;
     font-family: Verdana, sans-serif;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: normal;
     margin: 5px 0;
+}
+
+.ff7-box {
+    display: flex;
+    justify-content: center;
+}
+
+
+.character-image {
+    width: 250px;
+    height: 250px;
+    background-color: white;
+    border-radius: 7px;
+    border: #eff1ff solid 1px
+}
+
+.character-name {
+    font-size: 24px;
+}
+
+li {
+    list-style: none;
+    padding-left: 0;
+}
+
+.character-info {
+    padding-left: 0;
+    text-align: left;
+}
+
+.description {
+    margin-top: 10px;
 }

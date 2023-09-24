@@ -5,7 +5,7 @@ const CharacterBox = ({ character }) => {
     return (
         <StylingComponent>
             <div className="character-box">
-                <div className="character-name">{character.name}</div>
+
                 {character.pictures && character.pictures.length > 0 ? (
                     <img
                         className="character-image"
@@ -13,7 +13,9 @@ const CharacterBox = ({ character }) => {
                         alt={character.name}
                     />
                 ) : null}
+                <div className="character-name">{character.name}</div>
                 <ul className="character-info">
+
                     <li>
                         <strong>Age:</strong> {character.age}
                     </li>
@@ -35,7 +37,7 @@ const CharacterBox = ({ character }) => {
                     <li>
                         <strong>Origin:</strong> {character.origin}
                     </li>
-                    <li>
+                    <li class="description">
                         <strong>Description:</strong> {character.description}
                     </li>
                 </ul>
