@@ -4,10 +4,12 @@ import serverless from "serverless-http";
 const api = express();
 const router = Router();
 const axios = require('axios');
+const cors = require('cors');
 // const port = process.env.PORT || 3001;
-
+api.use(cors());
 api.use(express.json());
 api.use(express.urlencoded({ extended: false }));
+
 router.get('/api/characters', async (req, res) => {
     try {
         const response = await axios.get('https://www.moogleapi.com/api/v1/characters');
