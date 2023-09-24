@@ -1,11 +1,11 @@
-import express, { Router } from "express";
-import serverless from "serverless-http";
-
-const api = express();
-const router = Router();
+const express = require('express');
+const serverless = require('serverless-http');
 const axios = require('axios');
 const cors = require('cors');
-// const port = process.env.PORT || 3001;
+
+const api = express();
+const router = express.Router();
+
 api.use(cors());
 api.use(express.json());
 api.use(express.urlencoded({ extended: false }));
@@ -32,10 +32,5 @@ router.get('/monsters', async (req, res) => {
     }
 });
 
-// app.listen(port, () => {
-//     console.log(`Server is running on port ${port}`);
-// });
-
-
 api.use("/api/", router);
-export const handler = serverless(api);
+module.exports.handler = serverless(api);
