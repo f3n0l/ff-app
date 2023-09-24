@@ -1,7 +1,6 @@
 [functions]
-  external_node_modules = ["express","https", "serverless-http", "axios"]
-  node_bundler = "esbuild"
-
+external_node_modules = ["express", "https", "serverless-http", "axios"]
+node_bundler = "esbuild"
 
 [[redirects]]
 from = "/api/*"
