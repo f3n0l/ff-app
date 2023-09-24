@@ -1,5 +1,5 @@
 [functions]
-external_node_modules = ["express", "https", "serverless-http", "axios"]
+external_node_modules = ["express", "https", "serverless-http", "axios", "cors"]
 node_bundler = "esbuild"
 
 [[redirects]]
