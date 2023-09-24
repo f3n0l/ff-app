@@ -81,7 +81,7 @@ const MainPage = () => {
     return (
         <div className="main-page">
             <StylingComponent>
-                <div>
+                <div class="type">
                     <label>
                         <input
                             type="radio"
@@ -108,27 +108,29 @@ const MainPage = () => {
                     characters={selectedType === 'characters' ? characters : monsters}
                     onSelectCharacter={(character) => setSelectedCharacter(character)}
                 />
-                <div>
+                <div class="navigate-button">
                     <button onClick={selectPreviousCharacter}>Previous</button>
                     <button onClick={selectNextCharacter}>Next</button>
                     <button onClick={selectRandomCharacter}>Random</button>
                 </div>
-            </StylingComponent>
+            </StylingComponent >
             {/* Render CharacterBox or MonsterBox based on selectedType */}
-            {selectedType === 'characters' ? (
-                selectedCharacter ? (
-                    <CharacterBox character={selectedCharacter} />
+            {
+                selectedType === 'characters' ? (
+                    selectedCharacter ? (
+                        <CharacterBox character={selectedCharacter} />
+                    ) : (
+                        <p>Loading...</p>
+                    )
                 ) : (
-                    <p>Loading...</p>
+                    selectedCharacter ? (
+                        <MonsterBox monster={selectedCharacter} />
+                    ) : (
+                        <p>Loading...</p>
+                    )
                 )
-            ) : (
-                selectedCharacter ? (
-                    <MonsterBox monster={selectedCharacter} />
-                ) : (
-                    <p>Loading...</p>
-                )
-            )}
-        </div>
+            }
+        </div >
     );
 };
 

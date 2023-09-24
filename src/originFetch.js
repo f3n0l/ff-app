@@ -18,7 +18,7 @@ const OriginFetch = ({ origins, selectedOrigin, onSelectOrigin, characters, onSe
     }, [selectedOrigin, characters]);
 
     return (
-        <div>
+        <div class="origin">
             <label>Select Origin:</label>
             <select
                 value={selectedOrigin}
