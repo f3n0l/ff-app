@@ -5,7 +5,7 @@ const MonsterBox = ({ monster }) => {
     return (
         <StylingComponent>
             <div className="monster-box">
-                <div className="monster-name">{monster.name}</div>
+
                 {monster.picture && (
                     <img
                         className="monster-image"
@@ -13,6 +13,7 @@ const MonsterBox = ({ monster }) => {
                         alt={monster.name}
                     />
                 )}
+                <div className="monster-name">{monster.name}</div>
                 <ul className="monster-info">
                     <li>
                         <strong>Japanese Name:</strong> {monster.japaneseName}
@@ -36,11 +37,12 @@ const MonsterBox = ({ monster }) => {
                         <strong>Defense:</strong> {monster.defense}
                     </li>
                     <li>
-                        <strong>Description:</strong> {monster.description}
-                    </li>
-                    <li>
                         <strong>Game:</strong> {monster.game}
                     </li>
+                    <li className="description">
+                        <strong>Description:</strong> {monster.description}
+                    </li>
+
                 </ul>
             </div>
         </StylingComponent>

@@ -37,7 +37,7 @@ const CharacterBox = ({ character }) => {
                     <li>
                         <strong>Origin:</strong> {character.origin}
                     </li>
-                    <li class="description">
+                    <li className="description">
                         <strong>Description:</strong> {character.description}
                     </li>
                 </ul>

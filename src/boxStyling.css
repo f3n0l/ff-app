@@ -5,7 +5,8 @@ add typical ff7 layout
 */
 
 
-.character-box {
+.character-box,
+.monster-box {
     border: solid 1px #424542;
     box-shadow: 1px 1px #e7dfe7,
         -1px -1px #e7dfe7,
@@ -44,18 +45,22 @@ add typical ff7 layout
 .ff7-box {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+
 }
 
 
-.character-image {
+.character-image,
+.monster-image {
     width: 250px;
     height: 250px;
-    background-color: white;
+    /* background-color: white; */
     border-radius: 7px;
     border: #eff1ff solid 1px
 }
 
-.character-name {
+.character-name,
+.monster-name {
     font-size: 24px;
 }
 
@@ -64,7 +69,8 @@ li {
     padding-left: 0;
 }
 
-.character-info {
+.character-info,
+.monster-info {
     padding-left: 0;
     text-align: left;
 }
@@ -113,6 +119,17 @@ button {
 label,
 input,
 select {
+    border: solid 1px #424542;
+    box-shadow: 1px 1px #e7dfe7,
+        -1px -1px #e7dfe7,
+        1px -1px #e7dfe7,
+        -1px 1px #e7dfe7,
+        0 -2px #9c9a9c,
+        -2px 0 #7b757b,
+        0 2px #424542;
+
+    padding: 10px;
+
     background: #04009d;
     background: -moz-linear-gradient(top, #04009d 0%, #06004d 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #04009d), color-stop(100%, #06004d));
@@ -135,11 +152,13 @@ select {
     font-weight: normal;
 
     padding: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
 }
 
 /* 
 input */
-/* .navigate-button {}
+/* 
 
 .type {
     display: flex;
@@ -151,3 +170,47 @@ input */
     flex-direction: column;
     justify-content: center;
 } */
+
+.navigate-button {
+    margin-top: 10px;
+}
+
+.navigate-button>button {
+    margin-left: 10px;
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .character-box,
+    .monster-box {
+        width: 90%;
+        max-width: 100%;
+        margin: 20px auto;
+        padding: 10px;
+    }
+
+    .character-image,
+    .monster-image {
+        width: 100%;
+        height: 400px;
+    }
+
+    .character-name,
+    .monster-name {
+        font-size: 20px;
+    }
+
+    li {
+        margin-top: 10px;
+    }
+
+    .character-info,
+    .monster-info {
+        margin-left: 0;
+    }
+
+
+
+
+}
