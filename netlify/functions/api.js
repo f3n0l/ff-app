@@ -37,4 +37,4 @@ router.get('/api/monsters', async (req, res) => {
 
 
 app.use("/api/", router);
-export const handler = serverless(api);
+export const handler = serverless(app);
