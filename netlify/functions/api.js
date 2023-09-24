@@ -1,13 +1,13 @@
 // server.js
-import express, { Router } from 'express'
-import serverless from "serverless-http"
+import express, { Router } from 'express';
+import serverless from "serverless-http";
 
-const app = express();
-const router = Router()
+const api = express();
+const router = Router();
 const axios = require('axios');
 // const port = process.env.PORT || 3001;
 
-app.use(express.json());
+api.use(express.json());
 
 router.get('/api/characters', async (req, res) => {
     try {
@@ -36,5 +36,5 @@ router.get('/api/monsters', async (req, res) => {
 // });
 
 
-app.use("/api/", router);
-export const handler = serverless(app);
+api.use("/api/", router);
+export const handler = serverless(api);
