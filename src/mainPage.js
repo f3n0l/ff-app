@@ -137,4 +137,3 @@ const MainPage = () => {
 
 export default MainPage;
 
-//cleanup

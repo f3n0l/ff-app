@@ -47,5 +47,3 @@ const CharacterBox = ({ character }) => {
 };
 
 export default CharacterBox;
-
-//map?? // add styling

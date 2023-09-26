@@ -51,4 +51,3 @@ const MonsterBox = ({ monster }) => {
 
 export default MonsterBox;
 
-// fix
